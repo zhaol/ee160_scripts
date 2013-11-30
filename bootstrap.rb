@@ -3,7 +3,7 @@
 puts "bootstrapping your workspace for EE160 (this might take awhile)..."
 
 puts "setting up your directories (i.e. folders)"
-  `git clone https://github.com/zhaol/ee160_scaffold.git`
+  `git clone https://github.com/zhaol/ee160_scaffold.git ee160`
 
 puts "installing dependencies..."
   `gem install twitter -v 5.0.0.rc.1`
