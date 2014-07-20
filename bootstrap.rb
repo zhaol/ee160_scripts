@@ -6,7 +6,7 @@ puts "setting up your directories (i.e. folders)"
   `git clone https://github.com/zhaol/ee160_scaffold.git ee160`
 
 puts "installing dependencies..."
-  `gem install twitter -v 5.0.0.rc.1`
+  `gem install twitter -v 5.11.0`
   `gem install wavefile`
 
 puts "setting up your scripts"
