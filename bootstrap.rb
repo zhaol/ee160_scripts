@@ -7,7 +7,7 @@ puts "setting up your directories (i.e. folders)"
 
 puts "installing dependencies..."
   `gem install twitter -v 5.11.0`
-  `gem install wavefile`
+  `gem install wavefile -v 0.6.0`
 
 puts "setting up your scripts"
 Dir.chdir do
