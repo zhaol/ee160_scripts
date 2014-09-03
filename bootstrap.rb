@@ -1,4 +1,4 @@
-!# /usr/bin/env ruby
+!#/usr/bin/env ruby
 
 puts "bootstrapping your workspace for EE160 (this might take awhile)..."
 
