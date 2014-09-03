@@ -1,5 +1,3 @@
-!#/usr/bin/env ruby
-
 puts "bootstrapping your workspace for EE160 (this might take awhile)..."
 
 puts "setting up your directories (i.e. folders)"
