@@ -3,4 +3,4 @@
 ## Notes
 To bootstrap a workspace:
 
-    curl https://raw.github.com/zhaol/ee160_scripts/master/bootstrap.rb | ruby
+    curl https://raw.githubusercontent.com/zhaol/ee160_scripts/master/bootstrap.rb | ruby
