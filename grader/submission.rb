@@ -41,4 +41,4 @@ class Grader::Submission
   end
 end
 
-require_relative 'submission/parser'
+require __dir__ + '/submission/parser'
