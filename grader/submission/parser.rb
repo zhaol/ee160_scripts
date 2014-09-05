@@ -11,6 +11,10 @@ class Grader::Submission::Parser
     @minor || get_minor_assignment_number
   end
   
+  def identifier
+    @assignment
+  end
+  
   private
   
   def get_major_assignment_number

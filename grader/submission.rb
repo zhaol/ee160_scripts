@@ -16,7 +16,8 @@ class Grader::Submission
   
   def check
     begin
-      get_solution_class.check_output
+      get_solution.check_output
+      get_solution.check_syntax
     rescue
       puts 'Sorry but this assignment is not available for self checking.'
     end
@@ -24,8 +25,8 @@ class Grader::Submission
   
   private
   
-  def get_solution_class
-    Object.const_get(build_solution_classname)
+  def get_solution
+    @solution ||= Object.const_get(build_solution_classname).new(get_assignment_file)
   end
   
   def build_solution_classname
@@ -33,11 +34,15 @@ class Grader::Submission
   end
   
   def major_assignment_number
-    @assignment.major.to_i.to_words.capitalize
+    @major_assignment_number ||= @assignment.major.to_i.to_words.capitalize
   end
   
   def minor_assignment_number
-    @assignment.minor.to_i.to_words.capitalize
+    @minor_assignment_number ||= @assignment.minor.to_i.to_words.capitalize
+  end
+  
+  def get_assignment_file
+    `pwd`.chomp + '/' + @username + '_' + @assignment.identifier + '.c'
   end
 end
 
