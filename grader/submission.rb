@@ -41,4 +41,6 @@ class Grader::Submission
   end
 end
 
-require __dir__ + '/submission/parser'
+Dir.glob(File.join(__dir__ + '/submission', "**", "*.rb")).each do |file|
+  require file
+end
