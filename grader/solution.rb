@@ -2,9 +2,12 @@ class Grader::Solution
 end
 
 class Grader::Solution::Base
-  def initialize(assignment_file)
+  attr_accessor :report
+  
+  def initialize(assignment_file, report)
     @assignment_file = assignment_file
     @compiler = Grader::Submission::Compiler.new(@assignment_file)
+    @report = report
   end
   
   def check_output
