@@ -9,15 +9,19 @@ class Grader::Submission
     @solution_namespace
   end
   
+  attr_accessor :report
+  
   def initialize(assignment, username)
     @assignment = Grader::Submission::Parser.new(assignment)
     @username   = username
+    @report     = Grader::Report.new(assignment, username)
   end
   
   def check
     begin
       get_solution.check_output
       get_solution.check_syntax
+      report.finalize      
     rescue
       puts 'Sorry but this assignment is not available for self checking.'
     end
@@ -26,7 +30,7 @@ class Grader::Submission
   private
   
   def get_solution
-    @solution ||= Object.const_get(build_solution_classname).new(get_assignment_file)
+    @solution ||= Object.const_get(build_solution_classname).new(get_assignment_file, report)
   end
   
   def build_solution_classname

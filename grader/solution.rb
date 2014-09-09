@@ -2,14 +2,20 @@ class Grader::Solution
 end
 
 class Grader::Solution::Base
-  def initialize(assignment_file)
+  attr_accessor :report, :output
+  attr_reader :assignment_file, :compiler
+  
+  def initialize(assignment_file, report)
     @assignment_file = assignment_file
     @compiler = Grader::Submission::Compiler.new(@assignment_file)
+    @report = report
+    @output = ''
   end
   
   def check_output
     if respond_to? :analyze_output
       compile
+      run
       analyze_output
       clean_up
     else
@@ -28,11 +34,16 @@ class Grader::Solution::Base
   private
   
   def compile
-    @compiler.compile
+    compiler.compile
+  end
+  
+  def run
+    pwd = `pwd`.chomp
+    @output = `#{pwd}/#{compiler.compiled_output}`
   end
   
   def clean_up
-    `rm #{@compiler.compiled_output}`
+    `rm #{compiler.compiled_output}`
   end
 end
 

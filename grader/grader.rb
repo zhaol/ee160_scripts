@@ -3,6 +3,7 @@ require 'thor'
 class Grader < Thor
   require __dir__ + '/submission'
   require __dir__ + '/solution'
+  require __dir__ + '/report'
   
   desc "check ASSIGNMENT USERNAME", "check ASSIGNMENT for USERNAME"
   def check(assignment, username)
