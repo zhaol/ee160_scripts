@@ -1,3 +1,5 @@
+require 'shellwords'
+
 class Grader::Report
   attr_reader :assignment, :username
   attr_accessor :score
@@ -9,11 +11,11 @@ class Grader::Report
   end
   
   def write(text)
-    `echo #{text} >> #{report_file}`
+    `echo #{Shellwords.escape(text)} >> #{report_file}`
   end
   
   def update_score_by(adjustment)
-    score += adjustment
+    @score = score + adjustment
   end
   
   def finalize
