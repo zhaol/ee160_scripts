@@ -1,4 +1,5 @@
 require 'thor'
+require 'shellwords'
 
 class Grader < Thor
   require __dir__ + '/submission'

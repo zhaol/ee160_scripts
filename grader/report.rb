@@ -1,5 +1,3 @@
-require 'shellwords'
-
 class Grader::Report
   attr_reader :assignment, :username
   attr_accessor :score

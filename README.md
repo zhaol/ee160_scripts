@@ -7,7 +7,7 @@ To bootstrap a workspace:
     
 To run a self test:
 
-    (while in grader/test folder)
+    (while in grader/test/02_1/Li, Zhao(zhaol) folder)
     rm zhaol_02_1.report
-    ruby ../../grade check 02_1 zhaol
+    ruby ../../../../grade check 02_1 zhaol
     cat zhaol_02_1.report

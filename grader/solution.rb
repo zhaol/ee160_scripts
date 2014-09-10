@@ -38,7 +38,7 @@ class Grader::Solution::Base
   end
   
   def run
-    pwd = `pwd`.chomp
+    pwd = Shellwords.escape(`pwd`.chomp)
     @output = `#{pwd}/#{compiler.compiled_output}`
   end
   
