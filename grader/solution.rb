@@ -45,9 +45,18 @@ class Grader::Solution::Base
     compiler.compile
   end
   
-  def run
+  def run(interactive_inputs=nil, input_file=nil)
     pwd = Shellwords.escape(`pwd`.chomp)
-    @output = `#{pwd}/#{compiler.compiled_output}`
+    create_input_file if input_file
+    if interactive_inputs
+      @output = `#{pwd}/#{compiler.compiled_output} < #{interactive_inputs}`
+    else
+      @output = `#{pwd}/#{compiler.compiled_output}`
+    end
+  end
+  
+  def create_input_file
+    # TODO
   end
   
   def clean_up
