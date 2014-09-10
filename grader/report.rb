@@ -14,10 +14,10 @@ class Grader::Report
   
   def update_score_by(adjustment)
     @score = score + adjustment
-    @score
   end
   
   def finalize
+    prevent_negative_scores
     print_summary  
   end
   
@@ -25,6 +25,10 @@ class Grader::Report
   
   def report_file
     @report_file ||= username + '_' + assignment + '.report'
+  end
+  
+  def prevent_negative_scores
+    @score = 0 if score < 0
   end
   
   def print_summary
