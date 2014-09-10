@@ -4,7 +4,7 @@ class Grader::Submission::Compiler
   end
   
   def compile
-    `gcc #{Shellwords.escape(@file)} -o #{output_filename}`
+    system("gcc #{Shellwords.escape(@file)} -o #{output_filename}")
   end
   
   def compiled_output
