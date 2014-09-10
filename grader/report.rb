@@ -14,6 +14,7 @@ class Grader::Report
   
   def update_score_by(adjustment)
     @score = score + adjustment
+    @score
   end
   
   def finalize

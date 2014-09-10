@@ -14,10 +14,14 @@ class Grader::Solution::Base
   
   def check_output
     if respond_to? :analyze_output
-      compile
-      run
-      analyze_output
-      clean_up
+      if compiled_successfully
+        run
+        analyze_output
+        clean_up
+      else
+        report.write "Program failed to compile"
+        report.update_score_by -100
+      end
     else
       puts "no output to check for this assignment"
     end
@@ -32,6 +36,10 @@ class Grader::Solution::Base
   end
   
   private
+  
+  def compiled_successfully
+    compile
+  end
   
   def compile
     compiler.compile
