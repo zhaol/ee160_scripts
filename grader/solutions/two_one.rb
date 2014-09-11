@@ -1,5 +1,6 @@
 class Grader::Solution::TwoOne < Grader::Solution::Base
   def analyze_output
+    run
     verify_it_was_nice_meeting_you
     verify_hope_to_see_you_again
     verify_dont_forget_to_write
