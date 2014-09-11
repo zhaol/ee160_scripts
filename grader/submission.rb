@@ -9,9 +9,13 @@ class Grader::Submission
     @solution_namespace
   end
   
+  attr_reader :options
   attr_accessor :report
   
-  def initialize(assignment, username)
+  def initialize(assignment, username, options)
+    default_options = {as: 'student'}
+    @options = default_options.merge(options)
+    
     @assignment = Grader::Submission::Parser.new(assignment)
     @username   = username
     @report     = Grader::Report.new(assignment, username)
@@ -46,7 +50,15 @@ class Grader::Submission
   end
   
   def get_assignment_file
-    Dir.pwd + '/' + @username + '_' + @assignment.identifier + '.c'
+    if submitted_as_student
+      Dir.pwd + '/' + @username + '_' + @assignment.identifier + '.c'
+    else
+      Dir.pwd + '/Submission attachment(s)/' + @username + '_' + @assignment.identifier + '.c'
+    end
+  end
+  
+  def submitted_as_student
+    options[:as] == 'student'
   end
 end
 

@@ -11,13 +11,13 @@ class Grader < Thor
     default_options = {quiet_mode: false}
     options = default_options.merge(options)
     
-    puts "Hi #{username}, we're going to check #{assignment} for you"
-    submission = Grader::Submission.new(assignment, username)
-    submission.check
-    
     if options[:quiet_mode]
-      # don't ask to submit
+      puts "Grading #{username}'s submission..."
+      submission = Grader::Submission.new(assignment, username, {as: 'grader'}).check
     else
+      puts "Hi #{username}, we're going to check #{assignment} for you"
+      submission = Grader::Submission.new(assignment, username, {as: 'student'}).check      
+      
       puts "Do you want to submit #{assignment}? (y/n)"
       submit_response = STDIN.gets.chomp
       submit(assignment, username) if submit_response.eql? "y"
