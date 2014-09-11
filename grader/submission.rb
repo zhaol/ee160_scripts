@@ -46,7 +46,7 @@ class Grader::Submission
   end
   
   def get_assignment_file
-    `pwd`.chomp + '/' + @username + '_' + @assignment.identifier + '.c'
+    Dir.pwd + '/' + @username + '_' + @assignment.identifier + '.c'
   end
 end
 

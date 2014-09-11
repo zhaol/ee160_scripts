@@ -60,7 +60,7 @@ class Grader::Solution::Base
   end
   
   def pwd
-    Shellwords.escape(`pwd`.chomp)
+    Shellwords.escape(Dir.pwd)
   end
   
   def execute_program()
