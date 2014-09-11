@@ -15,7 +15,6 @@ class Grader::Solution::Base
   def check_output
     if respond_to? :analyze_output
       if compiled_successfully
-        run
         analyze_output
         clean_up
       else
@@ -46,13 +45,26 @@ class Grader::Solution::Base
   end
   
   def run(interactive_inputs=nil, input_file=nil)
-    pwd = Shellwords.escape(`pwd`.chomp)
     create_input_file if input_file
     if interactive_inputs
-      @output = `#{pwd}/#{compiler.compiled_output} < #{interactive_inputs}`
+      @output = execute_program_with(interactive_inputs)
     else
-      @output = `#{pwd}/#{compiler.compiled_output}`
+      @output = execute_program
     end
+  end
+  
+  def execute_program_with(input)
+    `#{pwd}/#{compiler.compiled_output} <<INPUT  
+      #{input}
+    INPUT`
+  end
+  
+  def pwd
+    Shellwords.escape(`pwd`.chomp)
+  end
+  
+  def execute_program()
+    `#{pwd}/#{compiler.compiled_output}`
   end
   
   def create_input_file
@@ -61,6 +73,12 @@ class Grader::Solution::Base
   
   def clean_up
     `rm #{compiler.compiled_output}`
+  end
+  
+  def report_standard_error_message(input, output)
+    report.write "The program did not successfully handle the following scenario:"
+    report.write "input: #{input}"
+    report.write "output: #{output}"
   end
 end
 
