@@ -1,5 +1,10 @@
 .c9
 *.report
 *.c
+*.tar
 !zhaol_02_1.c
+!zhaol2_02_1.c
 !zhaol_05_1.c
+!zhaol_02_1.tar
+!zhaol2_02_1.tar
+!zhaol_05_1.tar
