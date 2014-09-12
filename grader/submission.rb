@@ -10,7 +10,7 @@ class Grader::Submission
   end
   
   attr_reader :options
-  attr_accessor :report
+  attr_accessor :report, :username, :assignment
   
   def initialize(assignment, username, options)
     default_options = {as: 'student'}
@@ -22,6 +22,7 @@ class Grader::Submission
   end
   
   def check
+    preprocess_submission if submitted_as_grader
     begin
       get_solution.check_output
       get_solution.check_syntax
@@ -32,6 +33,12 @@ class Grader::Submission
   end
   
   private
+  
+  def preprocess_submission
+    Dir.chdir('Submission attachment(s)') do
+      `tar xf #{username}_#{assignment.identifier}.tar`
+    end
+  end
   
   def get_solution
     @solution ||= Object.const_get(build_solution_classname).new(get_assignment_file, report)
@@ -55,6 +62,10 @@ class Grader::Submission
     else
       Dir.pwd + '/Submission attachment(s)/' + @username + '_' + @assignment.identifier + '.c'
     end
+  end
+  
+  def submitted_as_grader
+    options[:as] == 'grader'
   end
   
   def submitted_as_student
