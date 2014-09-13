@@ -56,6 +56,18 @@ class Grader < Thor
     end
   end
   
+  desc "compile_class ASSIGNMENT", "compile ASSIGNMENT for entire class"
+  def compile_class(assignment)
+    Dir.foreach('.') do |folder|
+      next if folder == '.' or folder == '..'
+      username = get_username_from folder
+      Dir.chdir(folder) do
+        file = Grader::Submission::Utility.get_assignment_file_for_grader(username, assignment)
+        Grader::Submission::Compiler.new(file).compile
+      end
+    end
+  end
+  
   private
   
   def get_username_from(folder_name)

@@ -58,9 +58,9 @@ class Grader::Submission
   
   def get_assignment_file
     if submitted_as_student
-      Dir.pwd + '/' + @username + '_' + @assignment.identifier + '.c'
+      Grader::Submission::Utility.get_assignment_file_for_student(username, assignment.identifier)
     else
-      Dir.pwd + '/Submission attachment(s)/' + @username + '_' + @assignment.identifier + '.c'
+      Grader::Submission::Utility.get_assignment_file_for_grader(username, assignment.identifier)
     end
   end
   
