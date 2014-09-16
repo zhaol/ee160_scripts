@@ -53,6 +53,10 @@ class Grader::Solution::Base
     end
   end
   
+  def create_input_file
+    # TODO
+  end
+  
   def execute_program_with(input)
     `#{pwd}/#{compiler.compiled_output} <<INPUT  
       #{input}
@@ -66,11 +70,7 @@ class Grader::Solution::Base
   def execute_program()
     `#{pwd}/#{compiler.compiled_output}`
   end
-  
-  def create_input_file
-    # TODO
-  end
-  
+
   def clean_up
     `rm #{compiler.compiled_output}`
   end
