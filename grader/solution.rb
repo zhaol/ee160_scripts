@@ -3,7 +3,7 @@ end
 
 class Grader::Solution::Base
   attr_accessor :report, :output
-  attr_reader :assignment_file, :compiler
+  attr_reader :assignment_file, :compiler, :program_code
   
   def initialize(assignment_file, report)
     @assignment_file = assignment_file
@@ -42,6 +42,10 @@ class Grader::Solution::Base
   
   def compile
     compiler.compile
+  end
+  
+  def program_code
+    @program_code ||= File.open(assignment_file).read
   end
   
   def run(interactive_inputs=nil, input_file=nil)
