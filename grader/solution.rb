@@ -2,7 +2,7 @@ class Grader::Solution
 end
 
 class Grader::Solution::Base
-  attr_accessor :report, :output
+  attr_accessor :report, :output, :input_file_url
   attr_reader :assignment_file, :compiler, :program_code
   
   def initialize(assignment_file, report)
@@ -48,8 +48,8 @@ class Grader::Solution::Base
     @program_code ||= File.open(assignment_file).read
   end
   
-  def run(interactive_inputs=nil, input_file=nil)
-    create_input_file if input_file
+  def run(interactive_inputs=nil)
+    get_input_file if input_file_url
     if interactive_inputs
       @output = execute_program_with(interactive_inputs)
     else
@@ -57,8 +57,8 @@ class Grader::Solution::Base
     end
   end
   
-  def create_input_file
-    # TODO
+  def get_input_file
+    `wget -Nq #{input_file_url}`
   end
   
   def execute_program_with(input)
