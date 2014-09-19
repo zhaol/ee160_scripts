@@ -45,7 +45,7 @@ class Grader::Submission
   end
   
   def build_solution_classname
-    self.class.solution_namespace + '::' + major_assignment_number + minor_assignment_number
+    self.class.solution_namespace + '::' + major_assignment_number.gsub('-','') + minor_assignment_number
   end
   
   def major_assignment_number
