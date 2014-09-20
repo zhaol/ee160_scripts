@@ -81,8 +81,10 @@ class Grader::Solution::Base
   
   def report_standard_error_message(input, output)
     report.write "The program did not successfully handle the following scenario:"
-    report.write "input: #{input}"
-    report.write "output: #{output}"
+    report.write "input:"
+    report.write input
+    report.write "output:"
+    report.write output
   end
 end
 
