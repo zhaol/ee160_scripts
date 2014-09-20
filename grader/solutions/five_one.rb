@@ -12,8 +12,6 @@ class Grader::Solution::FiveOne < Grader::Solution::Base
     END_OF_INPUT
     run(input)
     
-    puts "300"
-    puts output  
     if /integer: #{input}/.match output
       # great
     else
@@ -28,8 +26,6 @@ class Grader::Solution::FiveOne < Grader::Solution::Base
     END_OF_INPUT
     run(input)
     
-    puts "300"
-    puts output
     if /integer: #{input}/.match output
       # great
     else
