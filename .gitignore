@@ -1,6 +1,8 @@
 .c9
 *.report
 *.c
+*.h
+*input.txt
 *.tar
 !zhaol_02_1.c
 !zhaol2_02_1.c
