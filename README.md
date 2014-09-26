@@ -18,18 +18,18 @@ To self-check:
 To grade entire class (or section):
   (while in 02_1 - e.g. parent folder of Laulima zip download)
   
-    ruby ~/ee160_scripts/graders score_class ASSIGNMENT
+    ruby ~/ee160_scripts/grade score_class ASSIGNMENT
   example
   
-    ruby ~/ee160_scripts/graders score_class 02_1
+    ruby ~/ee160_scripts/grade score_class 02_1
     
 To grade entire class (or section):
   (while in 02_1 - e.g. parent folder of Laulima zip download)  
   
-    ruby ~/ee160_scripts/graders compile_class ASSIGNMENT
+    ruby ~/ee160_scripts/grade compile_class ASSIGNMENT
   example
   
-    ruby ~/ee160_scripts/graders compile_class 02_1
+    ruby ~/ee160_scripts/grade compile_class 02_1
     
 ## Developing
 To run a self test:
