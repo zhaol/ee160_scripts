@@ -14,7 +14,9 @@ class Grader::Solution::Base
   
   def check_output
     if respond_to? :analyze_output
+      puts "checking output..."
       if compiled_successfully
+        puts "running compiled program..."
         analyze_output
         clean_up
       else
@@ -28,6 +30,7 @@ class Grader::Solution::Base
   
   def check_syntax
     if respond_to? :analyze_syntax
+      puts "checkinging syntax..."
       analyze_syntax
     else
       puts "no syntax to check for this assignment"
