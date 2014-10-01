@@ -10,9 +10,7 @@ class Grader::Solution::FourTwo < Grader::Solution::Base
   private
   
   def verify_line1
-    if /^\/\/\/\/$/.match output
-      # great
-    elsif /^\/\/\/\/ $/.match output
+    if /\/\/\/\/\s/.match output
       # great
     else
       report.write "First line output is incorrect"
@@ -20,9 +18,7 @@ class Grader::Solution::FourTwo < Grader::Solution::Base
     end
   end
   def verify_line2
-    if /^\/\/The first number is 3\/\/$/.match output
-      # great
-    elsif /^\/\/The first number is 3\/\/ $/.match output
+    if /\/\/The first number is 3\/\/\s/.match output
       # great
     else
       report.write "Second line output is incorrect"
@@ -30,9 +26,7 @@ class Grader::Solution::FourTwo < Grader::Solution::Base
     end
   end
   def verify_line3
-    if /^\/\/The second number is 5.000000\/\/$/.match output
-      # great
-    elsif /^\/\/The second number is 5.000000\/\/ $/.match output
+    if /\/\/The second number is 5.000000\/\/\s/.match output
       # great
     else
       report.write "Third line output is incorrect"
@@ -40,9 +34,7 @@ class Grader::Solution::FourTwo < Grader::Solution::Base
     end
   end
   def verify_line4
-    if /^\/\/The special character is "\/"\/\/$/.match output
-      # great
-    elsif /^\/\/The special character is "\/"\/\/ $/.match output
+    if /\/\/The special character is "\/"\/\/\s/.match output
       # great
     else
       report.write "Fourth line output is incorrect"

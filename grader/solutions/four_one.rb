@@ -7,9 +7,7 @@ class Grader::Solution::FourOne < Grader::Solution::Base
   private
   
   def verify_output
-    if /^The result is: 64 $/.match output
-      # great
-    elsif /^The result is: 64.000000 $/.match output
+    if /(The result is: 64\s$|The result is: 64.000000\s$)/.match output
       # great
     else
       report.write "Output did not correctly output the square of the two numbers"
