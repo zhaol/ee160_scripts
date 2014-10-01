@@ -45,10 +45,10 @@ A suggested workflow:
     git fetch origin
     git rebase origin/master # bring your local master branch up to date; similar to git pull origin master but safer
     git checkout -b feature/02_1
-    [modify source code]
-    [git add .]
-    [git commit -m 'adding blah blah']
-    [repeat]
+    * modify source code]
+      1. git add .
+      2. git commit -m 'adding blah blah'
+      3. repeat
     git checkout master
     git fetch origin
     git rebase origin/master
