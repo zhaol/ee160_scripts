@@ -38,3 +38,19 @@ To run a self test:
     rm zhaol_02_1.report
     ruby ../../../../grade check 02_1 zhaol
     cat zhaol_02_1.report
+    
+A suggested workflow:
+
+    git checkout master
+    git fetch origin
+    git rebase origin/master # bring your local master branch up to date; similar to git pull origin master but safer
+    git checkout -b feature/02_1
+    [modify source code]
+    [git add .]
+    [git commit -m 'adding blah blah']
+    [repeat]
+    git checkout master
+    git fetch origin
+    git rebase origin/master
+    git merge feature/02_1 --no-ff
+    git push origin master
