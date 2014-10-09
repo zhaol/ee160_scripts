@@ -9,7 +9,7 @@ class Grader::Submission
     @solution_namespace
   end
   
-  attr_reader :options
+  attr_reader :options, :attachment
   attr_accessor :report, :username, :assignment
   
   def initialize(assignment, username, options)
@@ -19,6 +19,7 @@ class Grader::Submission
     @assignment = Grader::Submission::Parser.new(assignment)
     @username   = username
     @report     = Grader::Report.new(assignment, username)
+    @attachment = Grader::Submission::Attachment.new(username, @assignment.identifier, @options)
   end
   
   def check
@@ -40,8 +41,12 @@ class Grader::Submission
     end
   end
   
+  def submitted_as_grader
+    options[:as] == 'grader'
+  end
+  
   def get_solution
-    @solution ||= Object.const_get(build_solution_classname).new(get_assignment_file, report)
+    @solution ||= Object.const_get(build_solution_classname).new(attachment, report)
   end
   
   def build_solution_classname
@@ -54,22 +59,6 @@ class Grader::Submission
   
   def minor_assignment_number
     @minor_assignment_number ||= @assignment.minor.to_i.to_words.capitalize
-  end
-  
-  def get_assignment_file
-    if submitted_as_student
-      Grader::Submission::Utility.get_assignment_file_for_student(username, assignment.identifier)
-    else
-      Grader::Submission::Utility.get_assignment_file_for_grader(username, assignment.identifier)
-    end
-  end
-  
-  def submitted_as_grader
-    options[:as] == 'grader'
-  end
-  
-  def submitted_as_student
-    options[:as] == 'student'
   end
 end
 

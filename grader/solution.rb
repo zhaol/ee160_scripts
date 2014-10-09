@@ -3,16 +3,17 @@ end
 
 class Grader::Solution::Base
   attr_accessor :report, :output, :input_file_url
-  attr_reader :assignment_file, :compiler, :program_code
+  attr_reader :attachment, :compiler, :program_code
   
-  def initialize(assignment_file, report)
-    @assignment_file = assignment_file
-    @compiler = Grader::Submission::Compiler.new(@assignment_file)
-    @report = report
-    @output = ''
+  def initialize(attachment, report)
+    @attachment = attachment
+    @compiler   = Grader::Submission::Compiler.new(attachment.assignment_file)
+    @report     = report
+    @output     = ''
   end
   
   def check_output
+    puts "before check_output"
     if respond_to? :analyze_output
       puts "checking output..."
       if compiled_successfully
@@ -30,7 +31,7 @@ class Grader::Solution::Base
   
   def check_syntax
     if respond_to? :analyze_syntax
-      puts "checkinging syntax..."
+      puts "checking syntax..."
       analyze_syntax
     else
       puts "no syntax to check for this assignment"
@@ -48,7 +49,11 @@ class Grader::Solution::Base
   end
   
   def program_code
-    @program_code ||= File.open(assignment_file).read
+    @program_code ||= File.open(attachment.assignment_file).read
+  end
+  
+  def helper_functions
+    @helper_functions ||= File.open(attachment.function_file).read  
   end
   
   def run(interactive_inputs=nil)
