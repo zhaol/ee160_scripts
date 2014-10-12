@@ -13,7 +13,6 @@ class Grader::Solution::Base
   end
   
   def check_output
-    puts "before check_output"
     if respond_to? :analyze_output
       puts "checking output..."
       if compiled_successfully
