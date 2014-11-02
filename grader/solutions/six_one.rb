@@ -5,7 +5,7 @@ class Grader::Solution::SixOne < Grader::Solution::Base
   
   private
   
-  def verify_needs magic
+  def verify_needs_magic
     input = <<-END_OF_INPUT
 7
     END_OF_INPUT
