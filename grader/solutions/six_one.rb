@@ -11,7 +11,7 @@ class Grader::Solution::SixOne < Grader::Solution::Base
     END_OF_INPUT
     run(input)
     
-    if /^Your number needs more magic :( $/.match output
+    if /^Your number needs more magic :\( $/.match output
       # great
     else
       #report.write "Your program did correctly output \'Your number needs more magic :( \' when given a number less than 100"
