@@ -25,6 +25,14 @@ class Grader::Submission::Attachment
     end  
   end
   
+  def macro_file
+    if submitted_as_student
+      student_macro_file
+    else
+      grader_macro_file
+    end  
+  end
+  
   private
   
   def student_assignment_file
@@ -41,6 +49,18 @@ class Grader::Submission::Attachment
   
   def grader_function_file
     Dir.pwd + '/Submission attachment(s)/' + username + '_' + assignment + '_helper_functions.c'
+  end
+  
+  def student_macro_file
+    Dir.pwd + '/' + username + '_' + assignment + '_magic_numbers.h' # TODO: delete after semester
+    #Dir.pwd + '/' + username + '_' + assignment + '.h' # TODO: use for 17_1; delete after semester
+    #Dir.pwd + '/' + username + '_' + assignment + '_macros.h'
+  end
+  
+  def grader_macro_file
+    Dir.pwd + '/Submission attachment(s)/' + username + '_' + assignment + '_magic_numbers.h'; # TODO: delete after semester
+    #Dir.pwd + '/Submission attachment(s)/' + username + '_' + assignment + '.h' # TODO: use for 17_1; delete after semester
+    #Dir.pwd + '/Submission attachment(s)/' + username + '_' + assignment + '_macros.h'
   end
   
   def submitted_as_student

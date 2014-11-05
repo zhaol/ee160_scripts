@@ -2,8 +2,8 @@ class Grader::Solution
 end
 
 class Grader::Solution::Base
-  attr_accessor :report, :output, :input_file_url
-  attr_reader :attachment, :compiler, :program_code
+  attr_accessor :report, :output, :input_file_url, :program_code, :helper_functions, :macros
+  attr_reader :attachment, :compiler
   
   def initialize(attachment, report)
     @attachment = attachment
@@ -53,6 +53,10 @@ class Grader::Solution::Base
   
   def helper_functions
     @helper_functions ||= File.open(attachment.function_file).read  
+  end
+  
+  def macros
+    @macros ||= File.open(attachment.macro_file).read  
   end
   
   def run(interactive_inputs=nil)
