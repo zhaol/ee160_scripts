@@ -31,7 +31,13 @@ class Grader::Solution::Base
   def check_syntax
     if respond_to? :analyze_syntax
       puts "checking syntax..."
-      analyze_syntax
+      begin
+        analyze_syntax
+      rescue Exception => message
+        report.write "couldn't find the following file"
+        report.write message
+        report.update_score_by -100    
+      end
     else
       puts "no syntax to check for this assignment"
     end
