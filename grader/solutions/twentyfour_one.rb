@@ -19,7 +19,8 @@ y
     run(input)
     
     ending_account_balance = starting_account_balance - 35  
-    if /#{ending_account_balance}/.match output_file("#{account_holder_name}.txt")
+    if /#{ending_account_balance}/.match output_file("#{account_holder_name}.txt") # TODO: remove at the end of semester
+    #if /#{ending_account_balance}/.match output_file("#{account_holder_name}.output") # TODO: uncomment at the end of semester
       report.write "an output file with the correct ending account balance was found"  
     else
       report.write "the output file did not contain the correct ending account balance"
