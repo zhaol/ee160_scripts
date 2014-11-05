@@ -34,6 +34,10 @@ class Grader::Submission::Attachment
     Dir.pwd + directory + username + '_' + assignment + self.class.MACRO_FILE_TRAILING_CHARACTERS
   end
   
+  def output_file(filename)
+    Dir.pwd + directory + filename
+  end
+  
   private
   
   def directory
