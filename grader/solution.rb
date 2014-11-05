@@ -2,7 +2,8 @@ class Grader::Solution
 end
 
 class Grader::Solution::Base
-  attr_accessor :report, :output, :input_file_url, :program_code, :helper_functions, :macros
+  attr_accessor :report, :output, :input_file_url,
+    :program_code, :helper_functions, :macros, :output_file
   attr_reader :attachment, :compiler
   
   def initialize(attachment, report)
@@ -43,6 +44,28 @@ class Grader::Solution::Base
     end
   end
   
+  def check_output_files
+    if respond_to? :analyze_output_files
+      puts "checking output files..."
+      if compiled_successfully
+        puts "running compiled program..."
+        begin
+          analyze_output_files
+        rescue Exception => message
+          report.write "the program did not generate the following output file"
+          report.write message
+          report.update_score_by -100            
+        end
+        clean_up
+      else
+        report.write "Program failed to compile"
+        report.update_score_by -100
+      end
+    else
+      puts "no output files to check for this assignment"
+    end
+  end
+  
   private
   
   def compiled_successfully
@@ -63,6 +86,10 @@ class Grader::Solution::Base
   
   def macros
     @macros ||= File.open(attachment.macro_file).read  
+  end
+  
+  def output_file(filename)
+    @output_file ||= File.open(attachment.output_file(filename)).read
   end
   
   def run(interactive_inputs=nil)
@@ -94,6 +121,8 @@ class Grader::Solution::Base
 
   def clean_up
     `rm #{compiler.compiled_output}`
+    `rm *.txt` # TODO: remove after semester
+    #`rm *.output` # TODO: uncomment after semester
   end
   
   def report_standard_error_message(input, output)

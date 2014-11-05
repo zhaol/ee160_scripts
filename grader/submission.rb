@@ -27,6 +27,7 @@ class Grader::Submission
     begin
       get_solution.check_output
       get_solution.check_syntax
+      get_solution.check_output_files
       report.finalize      
     rescue
       puts 'Sorry but this assignment is not available for self checking.'
