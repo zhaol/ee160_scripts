@@ -13,6 +13,7 @@ class Grader::Report
   end
   
   def update_score_by(adjustment)
+    write "-> #{adjustment}"
     @score = score + adjustment
   end
   
