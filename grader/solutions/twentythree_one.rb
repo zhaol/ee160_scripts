@@ -9,7 +9,7 @@ class Grader::Solution::TwentythreeOne < Grader::Solution::Base
   def verify_total_number_of_mamas
     run
     
-    if /[^\d]10[^\d]/.match output
+    if /[^\d]?10[^\d]?/.match output
       # great
     else
       report.write "Did not output the correct number of mama's (10)"
