@@ -122,6 +122,7 @@ class Grader::Solution::Base
   def clean_up
     `rm #{compiler.compiled_output}`
     `rm *.txt` # TODO: remove after semester
+    #`rm *.input` # TODO: uncomment after semester
     #`rm *.output` # TODO: uncomment after semester
   end
   
