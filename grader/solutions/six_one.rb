@@ -13,7 +13,7 @@ class Grader::Solution::SixOne < Grader::Solution::Base
     END_OF_INPUT
     run(input)
     
-    if /^Your number needs more magic :($/.match output
+    if /^Your number needs more magic :\($/.match output
       # great
     else
       #report.write "Your program did not correctly output \'Your number needs more magic :( \' when given a number less than 100"
@@ -41,7 +41,7 @@ class Grader::Solution::SixOne < Grader::Solution::Base
     END_OF_INPUT
     run(input)
     
-    if /^Your number is too magical :($/.match output
+    if /^Your number is too magical :\($/.match output
       # great
     else
       #report.write "Your program did not correctly output \'Your number is too magical :\( \' when given a number 200 or greater"
