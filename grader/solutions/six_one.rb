@@ -1,6 +1,8 @@
 class Grader::Solution::SixOne < Grader::Solution::Base
   def analyze_output
     verify_needs_magic
+    verify_very_magical
+    verify_too_magical
   end
   
   private
@@ -33,7 +35,7 @@ class Grader::Solution::SixOne < Grader::Solution::Base
     end
   end
   
-  def verify_needs_magic
+  def verify_too_magical
     input = <<-END_OF_INPUT
 233
     END_OF_INPUT
