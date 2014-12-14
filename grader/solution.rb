@@ -21,7 +21,7 @@ class Grader::Solution::Base
         analyze_output
         clean_up
       else
-        report.write "Program failed to compile"
+        write_compile_failure_message        
         report.update_score_by -100
       end
     else
@@ -56,9 +56,10 @@ class Grader::Solution::Base
           report.write message
           report.update_score_by -100            
         end
+        write_compile_failure_message        
         clean_up
       else
-        report.write "Program failed to compile"
+
         report.update_score_by -100
       end
     else
@@ -124,6 +125,14 @@ class Grader::Solution::Base
     `rm *.txt` # TODO: remove after semester
     #`rm *.input` # TODO: uncomment after semester
     #`rm *.output` # TODO: uncomment after semester
+  end
+  
+  def write_compile_failure_message        
+    report.write "Program failed to compile"
+    report.write "If you have no choice but to submit a homework or lab program that does not compile,"
+    report.write "please consider adding a comment at the top of the main file to describe in words to the grader what you did."
+    report.write "These extra comments will help the grader understand what you were trying to accomplish"
+    report.write "or where you got stuck, which can possibly give you more partial credit."   
   end
   
   def report_standard_error_message(input, output)
