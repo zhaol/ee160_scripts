@@ -22,7 +22,7 @@ class Grader::Solution::Base
         clean_up
       else
         write_compile_failure_message        
-        report.update_score_by -100
+        report.update_score_by(-100)
       end
     else
       puts "no output to check for this assignment"
@@ -37,7 +37,7 @@ class Grader::Solution::Base
       rescue Exception => message
         report.write "couldn't find the following file"
         report.write message
-        report.update_score_by -100    
+        report.update_score_by(-100)
       end
     else
       puts "no syntax to check for this assignment"
@@ -54,13 +54,13 @@ class Grader::Solution::Base
         rescue Exception => message
           report.write "the program did not generate the following output file"
           report.write message
-          report.update_score_by -100            
+          report.update_score_by(-100)            
         end
         write_compile_failure_message        
         clean_up
       else
 
-        report.update_score_by -100
+        report.update_score_by(-100)
       end
     else
       puts "no output files to check for this assignment"
@@ -121,10 +121,9 @@ class Grader::Solution::Base
   end
 
   def clean_up
-    `rm #{compiler.compiled_output}`
-    `rm *.txt` # TODO: remove after semester
-    #`rm *.input` # TODO: uncomment after semester
-    #`rm *.output` # TODO: uncomment after semester
+    File.delete(compiler.compiled_output) if File.exist?(compiler.compiled_output)
+    #Dir.glob('*.input').each { |file| File.delete(file) } # try not deleting and just leaving input/output files for students to inspect
+    #Dir.glob('*.output').each { |file| File.delete(file) } # try not deleting and just leaving input/output files for students to inspect
   end
   
   def write_compile_failure_message        
@@ -136,11 +135,12 @@ class Grader::Solution::Base
   end
   
   def report_standard_error_message(input, output)
-    report.write "The program did not successfully handle the following scenario:"
-    report.write "input:"
+    report.write 'The program did not successfully handle the following scenario:'
+    report.write 'the program was given the following input:'
     report.write input
-    report.write "output:"
+    report.write 'and produced the following incorrect output:'
     report.write output
+    report.write '(Note: If the program is missing newline characters, the formatting of the reported output will be missing newline characters as well. This will make the reported output harder to read.)'
   end
 end
 

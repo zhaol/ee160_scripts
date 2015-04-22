@@ -8,9 +8,7 @@ class Grader::Submission::Attachment
   @GRADER_DIRECTORY                    = '/Submission attachment(s)/'
   @ASSIGNMENT_FILE_TRAILING_CHARACTERS = '.c'
   @FUNCTION_FILE_TRAILING_CHARACTERS   = '_helper_functions.c'
-  #@MACRO_FILE_TRAILING_CHARACTERS     = '_macros.h' # TODO: uncomment after semester
-  @MACRO_FILE_TRAILING_CHARACTERS      = '_magic_numbers.h' # TODO: delete after semester
-  #@MACRO_FILE_TRAILING_CHARACTERS     = '.h' # TODO: use for 17_1; delete after semester
+  @MACRO_FILE_TRAILING_CHARACTERS     = '_macros.h'
   
   attr_reader :username, :assignment, :options
   
