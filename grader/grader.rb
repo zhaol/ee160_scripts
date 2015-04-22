@@ -23,8 +23,8 @@ class Grader < Thor
       puts "Hi #{username}, we're going to check #{assignment} for you"
       submission = Grader::Submission.new(assignment, username, {as: 'student'}).check      
       
-      puts "Please note that submitting the same assignment again will overwrite any existing files with the same name on Laulima Dropbox"
-      puts "Do you want to submit #{assignment}? (y/n)"
+      puts "Please note that uploading the same assignment again will overwrite any existing files in your Laulima Dropbox that has the same name"
+      puts "Do you want to upload #{assignment} to Laulima Dropbox? (y/n)"
       submit_response = STDIN.gets.chomp
       submit(assignment, username) if submit_response.eql? "y"
     end
@@ -84,7 +84,7 @@ class Grader < Thor
   end
   
   def send_file(assignment, username, file)
-    puts "Please enter your Laulima Dropbox password (it should be the same as your UH email password):"
+    puts "Please enter your Laulima Dropbox password (it should be the same as your UH email password; password won't be shown for your protection):"
     password = STDIN.noecho(&:gets)
     system "curl --fail -T #{file} #{self.class.laulima_dropbox_url}/#{username}/#{assignment}/ -u #{username}:#{password}"
   end

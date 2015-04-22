@@ -16,7 +16,7 @@ class Grader::Solution::FiveOne < Grader::Solution::Base
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by -10
+      report.update_score_by(-20)
     end
   end
   
@@ -30,7 +30,7 @@ class Grader::Solution::FiveOne < Grader::Solution::Base
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by -10
+      report.update_score_by(-20)
     end
   end
 end

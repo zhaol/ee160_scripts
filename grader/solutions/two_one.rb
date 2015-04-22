@@ -13,7 +13,7 @@ class Grader::Solution::TwoOne < Grader::Solution::Base
       # great
     else
       report.write "Output did not correctly output: It was nice meeting you, world."
-      report.update_score_by -10
+      report.update_score_by(-10)
     end
   end
   
@@ -22,7 +22,7 @@ class Grader::Solution::TwoOne < Grader::Solution::Base
       # great
     else
       report.write "Output did not correctly output: Hope to see you again soon. :-\\"
-      report.update_score_by -30
+      report.update_score_by(-30)
     end
   end
   
@@ -31,7 +31,7 @@ class Grader::Solution::TwoOne < Grader::Solution::Base
       # great
     else
       report.write "Output did not correctly output: Don't forget to write."
-      report.update_score_by -10
+      report.update_score_by(-10)
     end
   end
 end

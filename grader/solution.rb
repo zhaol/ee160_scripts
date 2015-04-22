@@ -21,8 +21,8 @@ class Grader::Solution::Base
         analyze_output
         clean_up
       else
-        report.write "Program failed to compile"
-        report.update_score_by -100
+        write_compile_failure_message        
+        report.update_score_by(-100)
       end
     else
       puts "no output to check for this assignment"
@@ -37,7 +37,7 @@ class Grader::Solution::Base
       rescue Exception => message
         report.write "couldn't find the following file"
         report.write message
-        report.update_score_by -100    
+        report.update_score_by(-100)
       end
     else
       puts "no syntax to check for this assignment"
@@ -54,12 +54,13 @@ class Grader::Solution::Base
         rescue Exception => message
           report.write "the program did not generate the following output file"
           report.write message
-          report.update_score_by -100            
+          report.update_score_by(-100)            
         end
+        write_compile_failure_message        
         clean_up
       else
-        report.write "Program failed to compile"
-        report.update_score_by -100
+
+        report.update_score_by(-100)
       end
     else
       puts "no output files to check for this assignment"
@@ -120,18 +121,26 @@ class Grader::Solution::Base
   end
 
   def clean_up
-    `rm #{compiler.compiled_output}`
-    `rm *.txt` # TODO: remove after semester
-    #`rm *.input` # TODO: uncomment after semester
-    #`rm *.output` # TODO: uncomment after semester
+    File.delete(compiler.compiled_output) if File.exist?(compiler.compiled_output)
+    #Dir.glob('*.input').each { |file| File.delete(file) } # try not deleting and just leaving input/output files for students to inspect
+    #Dir.glob('*.output').each { |file| File.delete(file) } # try not deleting and just leaving input/output files for students to inspect
+  end
+  
+  def write_compile_failure_message        
+    report.write "Program failed to compile"
+    report.write "If you have no choice but to submit a homework or lab program that does not compile,"
+    report.write "please consider adding a comment at the top of the main file to describe in words to the grader what you did."
+    report.write "These extra comments will help the grader understand what you were trying to accomplish"
+    report.write "or where you got stuck, which can possibly give you more partial credit."   
   end
   
   def report_standard_error_message(input, output)
-    report.write "The program did not successfully handle the following scenario:"
-    report.write "input:"
+    report.write 'The program did not successfully handle the following scenario:'
+    report.write 'the program was given the following input:'
     report.write input
-    report.write "output:"
+    report.write 'and produced the following incorrect output:'
     report.write output
+    report.write '(Note: If the program is missing newline characters, the formatting of the reported output will be missing newline characters as well. This will make the reported output harder to read.)'
   end
 end
 
