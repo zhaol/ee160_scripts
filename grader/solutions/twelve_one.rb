@@ -1,10 +1,10 @@
 class Grader::Solution::TwelveOne < Grader::Solution::Base
   def analyze_output
-    verify_minimum_balances
+    verify_total_min_bal_fee_collected
   end
   private
 
-  def verify_minimum_balances
+  def verify_total_min_bal_fee_collected
     input = <<-END_OF_INPUT
 300
 c
@@ -14,21 +14,18 @@ c
 n
 500
 s
+n
+1000
+s
 y
     END_OF_INPUT
     run(input)
     
-    if /$40.00/.match output
+    if /^The total amount of minimum balance fee collected: \$40.00$/.match output
       # great
-    elsif /40/.match output
-      report.write "Please output minimum balance fees in currency format. Example: \"$40.00\""
-      report.update_score_by -5
-    elsif /60/.match output
-      report.write "Program counts minimum balance fees from accounts that are over the minimum balance limit"
-      report.update_score_by -10
     else
-      report.write "Program did not correctly display total amount of minimum balance fees to be collected"
-      report.update_score_by -20
+      report_standard_error_message(input, output)
+      report.update_score_by(-50)
     end
   end
 end
