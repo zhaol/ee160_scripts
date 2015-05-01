@@ -7,8 +7,8 @@ class Grader::Submission::Attachment
   @STUDENT_DIRECTORY                   = '/'
   @GRADER_DIRECTORY                    = '/Submission attachment(s)/'
   @ASSIGNMENT_FILE_TRAILING_CHARACTERS = '.c'
-  @FUNCTION_FILE_TRAILING_CHARACTERS   = '_helper_functions.c'
-  @MACRO_FILE_TRAILING_CHARACTERS     = '_macros.h'
+  @FUNCTION_FILE_TRAILING_CHARACTERS   = '_functions.c'
+  @MACRO_FILE_TRAILING_CHARACTERS      = '_macros.h'
   
   attr_reader :username, :assignment, :options
   
