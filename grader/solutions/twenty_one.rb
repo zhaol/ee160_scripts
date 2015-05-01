@@ -13,32 +13,34 @@ class Grader::Solution::TwentyOne < Grader::Solution::Base
 c
 n
 150
-c
+s
 n
 200
-c
+s
 n
 1
 c
 y
     END_OF_INPUT
     run(input)
-    
-    if /1.+150.+200.+500/m.match output
+    if /List[\s]of[\s]Account[\s]Balances[\s=]*
+        [\s]*0:[\s]*[$][\s]*1[.]00 
+        [\s]*1:[\s]*[$][\s]*150[.]00 
+        [\s]*2:[\s]*[$][\s]*200[.]00 
+        [\s]*3:[\s]*[$][\s]*500[.]00/x.match output 
       # great
     else
-      report.write "Program did not correctly display List of Account Balances"
-      report.update_score_by -20
+      report_standard_error_message(input, output)
+      report.update_score_by(-20)
     end
   end
   
   def verify_no_qsort
-    if /qsort/.match program_code
-      report.write "A qsort function was detected in your program code"
-      report.update_score_by -20
-    elsif /qsort/.match helper_functions
-      report.write "A qsort function was detected in your helper functions"
-      report.update_score_by -20
+    if (/qsort/.match program_code) ||
+      (/qsort/.match helper_functions)
+      report.write "A qsort function was detected in your program"
+      report.write "Please do not use the qsort function"
+      report.update_score_by(-20)
     else
       # great
     end
