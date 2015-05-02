@@ -2,13 +2,14 @@ class Grader::Submission::Attachment
   class << self
     attr_accessor :STUDENT_DIRECTORY, :GRADER_DIRECTORY,
       :ASSIGNMENT_FILE_TRAILING_CHARACTERS, :FUNCTION_FILE_TRAILING_CHARACTERS,
-      :MACRO_FILE_TRAILING_CHARACTERS
+      :MACRO_FILE_TRAILING_CHARACTERS, :INPUT_FILE_TRAILING_CHARACTERS
   end
   @STUDENT_DIRECTORY                   = '/'
   @GRADER_DIRECTORY                    = '/Submission attachment(s)/'
   @ASSIGNMENT_FILE_TRAILING_CHARACTERS = '.c'
   @FUNCTION_FILE_TRAILING_CHARACTERS   = '_functions.c'
   @MACRO_FILE_TRAILING_CHARACTERS      = '_macros.h'
+  @INPUT_FILE_TRAILING_CHARACTERS      = '.input'
   
   attr_reader :username, :assignment, :options
   
@@ -34,6 +35,10 @@ class Grader::Submission::Attachment
   
   def output_file(filename)
     Dir.pwd + directory + filename
+  end
+  
+  def input_file
+    Dir.pwd + directory + assignment + self.class.INPUT_FILE_TRAILING_CHARACTERS
   end
   
   private

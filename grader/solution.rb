@@ -34,9 +34,9 @@ class Grader::Solution::Base
       puts "checking syntax..."
       begin
         analyze_syntax
-      rescue Exception => message
+      rescue => error
         report.write "couldn't find the following file"
-        report.write message
+        report.write error.message
         report.update_score_by(-100)
       end
     else
@@ -51,15 +51,14 @@ class Grader::Solution::Base
         puts "running compiled program..."
         begin
           analyze_output_files
-        rescue Exception => message
+        rescue => error
           report.write "the program did not generate the following output file"
-          report.write message
-          report.update_score_by(-100)            
+          report.write error.message
+          report.update_score_by(-50)
         end
-        write_compile_failure_message        
         clean_up
       else
-
+        write_compile_failure_message        
         report.update_score_by(-100)
       end
     else
@@ -90,7 +89,11 @@ class Grader::Solution::Base
   end
   
   def output_file(filename)
-    @output_file ||= File.open(attachment.output_file(filename)).read
+    File.open(attachment.output_file(filename)).read
+  end
+  
+  def input_file
+    @input_file ||= File.open(attachment.input_file).read
   end
   
   def run(interactive_inputs=nil)
