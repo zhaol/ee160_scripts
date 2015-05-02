@@ -1,6 +1,6 @@
 class Grader::Solution::ThirtyoneTwo < Grader::Solution::Base
   def analyze_output
-    @input_file_url = "https://raw.githubusercontent.com/zhaol/ee160/gh-pages/code/2d_arrays/31_2_input.txt"
+    @input_file_url = "https://raw.githubusercontent.com/zhaol/ee160/gh-pages/code/2d_arrays/test/31_2.input"
     verify_image_is_boldened
   end
   
@@ -10,9 +10,9 @@ class Grader::Solution::ThirtyoneTwo < Grader::Solution::Base
     run
     
     boldened_image = <<-END_OF_INPUT
-OOOOOOOOOOOOOOO
-OOXXXOOOOOXXXOO
-OOXXXOOOOOXXXOO
+XXXOOOOOOOOOOOO
+XXXXXOOOOOXXXOO
+XXXXXOOOOOXXXOO
 OOXXXOOOOOXXXOO
 OOOOOOXXXOOOOOO
 OOOOOOXXXOOOOOO
@@ -27,10 +27,10 @@ OOOOOOOOOOOOOOO
 puts output
     
     if /#{boldened_image}/.match output
-      # great
+      report.write "The program successfully boldened the image"
     else
-      report.write "The outputed images is not boldened"
-      report.update_score_by -50
+      report.write "The outputed images was not boldened"
+      report.update_score_by9-50
     end
   end
   
