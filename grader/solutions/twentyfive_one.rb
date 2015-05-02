@@ -19,7 +19,7 @@ E
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by -10
+      report.update_score_by(-10)
     end
   end
   
@@ -33,7 +33,7 @@ Q
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by -10
+      report.update_score_by(-10)
     end
   end
   
@@ -47,7 +47,7 @@ r
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by -10
+      report.update_score_by(-10)
     end
   end
   
@@ -61,7 +61,7 @@ t
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by -10
+      report.update_score_by(-10)
     end
   end
   
@@ -75,7 +75,7 @@ t
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by -10
+      report.update_score_by(-10)
     end
   end
 end
