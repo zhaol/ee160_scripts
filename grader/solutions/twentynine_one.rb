@@ -4,6 +4,10 @@ class Grader::Solution::TwentynineOne < Grader::Solution::Base
     verify_100
   end
   
+  def analyze_syntax
+    verify_goto
+  end
+  
   private
 
   def verify_31
@@ -47,10 +51,10 @@ FizzBuzz
     END_OF_EXPECTED_OUTPUT
     
     if /#{expected_output}/.match output
-      # great
+      report.write 'The program functions as expected'
     else
       report_standard_error_message(input, output)
-      report.update_score_by -20
+      report.update_score_by(-20)
     end
   end
   
@@ -164,10 +168,19 @@ Buzz
     END_OF_EXPECTED_OUTPUT
     
     if /#{expected_output}/.match output
-      # great
+      report.write 'The program functions as expected'
     else
       report_standard_error_message(input, output)
-      report.update_score_by -20
+      report.update_score_by(-20)
+    end
+  end
+  
+  def verify_goto
+    if /[\s]*goto[\s]*/.match program_code
+      report.write 'goto was found'
+    else
+      report.write 'goto was not found'
+      report.update_score_by(-10)
     end
   end
 end
