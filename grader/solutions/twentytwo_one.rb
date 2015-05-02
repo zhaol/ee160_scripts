@@ -19,18 +19,16 @@ y
     if /Trey/.match output
       # great
     else
-      report.write "Program did not capitalize first letter of account holder"
-      report.update_score_by -20
+      report_standard_error_message(input, output)
+      report.update_score_by(-20)
     end
   end
   
   def verify_no_toupper
-    if /toupper/.match program_code
-      report.write "A toupper function was detected in your program code"
-      report.update_score_by -20
-    elsif /toupper/.match helper_functions
-      report.write "A toupper function was detected in your helper functions"
-      report.update_score_by -20
+    if (/toupper/.match program_code) ||
+        (/toupper/.match helper_functions)
+      report.write "A toupper function was detected in the program"
+      report.update_score_by(-20)
     else
       # great
     end
