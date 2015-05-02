@@ -4,6 +4,11 @@ class Grader::Solution::TwentysevenOne < Grader::Solution::Base
     verify_invalid_character_and_q
   end
   
+  def analyze_syntax
+    verify_do_while
+    verify_for
+  end
+  
   private
 
   def verify_100_and_q
@@ -120,10 +125,10 @@ Quitting...
     END_OF_EXPECTED_OUTPUT
     
     if /#{expected_output}/.match output
-      # great
+      report.write 'The program successfully handled a valid entry'
     else
       report_standard_error_message(input, output)
-      report.update_score_by -20
+      report.update_score_by(-10)
     end
   end
   
@@ -142,10 +147,29 @@ Quitting...
     END_OF_EXPECTED_OUTPUT
     
     if /#{expected_output}/.match output
-      # great
+      report.write 'The program successfully handled an invalid entry'
     else
       report_standard_error_message(input, output)
-      report.update_score_by -20
+      report.update_score_by(-10)
+    end
+  end
+  
+  def verify_do_while
+    if (/do[\s]*{/.match program_code) &&
+        (/}[\s]*while[\s]*[(]/.match program_code)
+      report.write 'do while loop was found'
+    else
+      report.write 'do while loop was not found'
+      report.update_score_by(-10)
+    end
+  end
+  
+  def verify_for
+    if /for[\s]*[(]/.match program_code
+      report.write 'for loop was found'
+    else
+      report.write 'for loop was not found'
+      report.update_score_by(-10)
     end
   end
 end
