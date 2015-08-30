@@ -15,7 +15,7 @@ class Grader::Solution::ThreeOne < Grader::Solution::Base
   private
   
   def verify_fore_zero_padding
-    if /^zero padding in back of a number: 1\.23450 1\.234500 1\.2345000$/.match output
+    if /^zero padding in back of a number: 1\.23450 1\.234500 1\.2345000[\s]?$/.match output
       # great
     else
       report.write "Output did not correctly output: zero padding in back of a number: 1.23450 1.234500 1.2345000"
@@ -24,7 +24,7 @@ class Grader::Solution::ThreeOne < Grader::Solution::Base
   end
   
   def verify_aft_zero_padding
-    if /^zero padding in front of a number: 1\.2345 01\.2345 001\.2345$/.match output
+    if /^zero padding in front of a number: 1\.2345 01\.2345 001\.2345[\s]?$/.match output
       # great
     else
       report.write "Output did not correctly output: zero padding in front of a number: 1.2345 01.2345 001.2345"
@@ -33,7 +33,7 @@ class Grader::Solution::ThreeOne < Grader::Solution::Base
   end
   
   def verify_exponentials
-    if /^exponentials \(base 10\): 1.2345e\+00 1.23450e\+00 1.234500e\+00$/.match output
+    if /^exponentials \(base 10\): 1.2345e\+00 1.23450e\+00 1.234500e\+00[\s]?$/.match output
       # great
     else
       report.write "Output did not correctly output: exponentials (base 10): 1.2345e+00 1.23450e+00 1.234500e+00"
@@ -42,7 +42,7 @@ class Grader::Solution::ThreeOne < Grader::Solution::Base
   end
   
   def verify_truncation
-    if /^truncation vs rounding of numbers: 1\.234$/.match output
+    if /^truncation vs rounding of numbers: 1\.234[\s]?$/.match output
       # great
     else
       report.write "Output did not correctly output: truncation vs rounding of numbers: 1.234"
@@ -51,7 +51,7 @@ class Grader::Solution::ThreeOne < Grader::Solution::Base
   end
   
   def verify_negative_numbers
-    if /^negative numbers: -1\.2345 -1\.2345e\+00$/.match output
+    if /^negative numbers: -1\.2345 -1\.2345e\+00[\s]?$/.match output
       # great
     else
       report.write "Output did not correctly output: negative numbers: -1.2345 -1.2345e+00"
