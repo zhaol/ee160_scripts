@@ -39,6 +39,14 @@ To remove all *.report files (so the report file does not contain output from th
   
     find . -name "*.report" -type f
     
+To consolidate student reports into master class report:
+  (while in 02_1 - e.g. parent folder of Laulima zip download)  
+  
+    ruby ~/ee160_scripts/grade consolidate_reports ASSIGNMENT
+  example
+  
+    ruby ~/ee160_scripts/grade consolidate_reports 02_1
+    
 ## Developing
 To run a self test:
   (while in grader/test/02_1/Li, Zhao(zhaol) folder)
