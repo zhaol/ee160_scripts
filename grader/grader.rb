@@ -69,7 +69,20 @@ class Grader < Thor
     end
   end
   
+  desc "consolidate_reports ASSIGNMENT", "consolidate all student reports into a single class report for ASSIGNMENT"
+  def consolidate_reports(assignment)
+    master_report = Grader::MasterReport.new(assignment)
+    get_student_folders.each do |folder|
+      username = get_username_from folder
+      master_report.append username, folder
+    end
+  end
+  
   private
+  
+  def get_student_folders
+    Dir.glob('*').select {|f| File.directory? f}
+  end
   
   def get_username_from(folder_name)
     /[(](.+)[)]/.match(folder_name).captures[0]
