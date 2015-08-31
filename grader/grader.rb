@@ -5,6 +5,7 @@ class Grader < Thor
   require __dir__ + '/submission'
   require __dir__ + '/solution'
   require __dir__ + '/report'
+  require __dir__ + '/master_report'
   
   @laulima_dropbox_url = 'https://laulima.hawaii.edu/dav/group-user/MAN.XLSEE160zl.201610'
   def self.laulima_dropbox_url
