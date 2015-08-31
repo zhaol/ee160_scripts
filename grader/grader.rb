@@ -5,6 +5,7 @@ class Grader < Thor
   require __dir__ + '/submission'
   require __dir__ + '/solution'
   require __dir__ + '/report'
+  require __dir__ + '/master_report'
   
   @laulima_dropbox_url = 'https://laulima.hawaii.edu/dav/group-user/MAN.XLSEE160zl.201610'
   def self.laulima_dropbox_url
@@ -47,6 +48,7 @@ class Grader < Thor
   
   desc "score_class ASSIGNMENT", "score ASSIGNMENT for entire class"
   def score_class(assignment)
+    # TODO use private method 'get_student_folders'
     Dir.foreach('.') do |folder|
       next if folder == '.' or folder == '..'
       username = get_username_from folder
@@ -68,7 +70,20 @@ class Grader < Thor
     end
   end
   
+  desc "consolidate_reports ASSIGNMENT", "consolidate all student reports into a single class report for ASSIGNMENT"
+  def consolidate_reports(assignment)
+    master_report = Grader::MasterReport.new(assignment)
+    get_student_folders.each do |folder|
+      username = get_username_from folder
+      master_report.append username, folder
+    end
+  end
+  
   private
+  
+  def get_student_folders
+    Dir.glob('*').select {|f| File.directory? f}
+  end
   
   def get_username_from(folder_name)
     /[(](.+)[)]/.match(folder_name).captures[0]
