@@ -54,3 +54,9 @@ A suggested workflow:
     git rebase origin/master
     git merge feature/02_1 --no-ff
     git push origin master
+    
+Regular Expression (regex, regexp) References:
+
+[Regex Tutorial](http://regexone.com)
+
+[Regex Testing](http://rubular.com)
