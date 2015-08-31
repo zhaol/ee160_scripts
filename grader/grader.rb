@@ -48,6 +48,7 @@ class Grader < Thor
   
   desc "score_class ASSIGNMENT", "score ASSIGNMENT for entire class"
   def score_class(assignment)
+    # TODO use private method 'get_student_folders'
     Dir.foreach('.') do |folder|
       next if folder == '.' or folder == '..'
       username = get_username_from folder
