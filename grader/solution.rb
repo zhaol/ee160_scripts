@@ -147,6 +147,6 @@ class Grader::Solution::Base
   end
 end
 
-Dir.glob(File.join(__dir__ + '/solutions', "**", "*.rb")).each do |file|
+Dir.glob(File.join(__dir__ + '/solutions', "**", ".rb")).each do |file|
   require file
 end
