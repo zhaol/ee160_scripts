@@ -23,13 +23,21 @@ To grade entire class (or section):
   
     ruby ~/ee160_scripts/grade score_class 02_1
     
-To grade entire class (or section):
+To compile entire class (or section):
   (while in 02_1 - e.g. parent folder of Laulima zip download)  
   
     ruby ~/ee160_scripts/grade compile_class ASSIGNMENT
   example
   
     ruby ~/ee160_scripts/grade compile_class 02_1
+
+To remove all *.report files (so the report file does not contain output from the previous checking):
+  (while in 02_1 - e.g. parent folder of Laulima zip download)  
+  
+    find . -name "*.report" -type f -delete
+  It is safer to see which files will be deleted first prior to actually deleting the files:
+  
+    find . -name "*.report" -type f
     
 ## Developing
 To run a self test:
