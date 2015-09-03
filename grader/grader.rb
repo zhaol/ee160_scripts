@@ -101,7 +101,7 @@ class Grader < Thor
   def send_file(assignment, username, file)
     puts "Please enter your Laulima Dropbox password (it should be the same as your UH email password; password won't be shown for your protection):"
     password = STDIN.noecho(&:gets)
-    system "curl --fail -T #{file} #{self.class.laulima_dropbox_url}/#{username}/#{assignment}/ -u #{username}:#{password}"
+    system "curl --fail -T #{file} #{self.class.laulima_dropbox_url}/#{username}/#{assignment}/ -u #{username}:#{password}" # TODO shell/URL escape password so spaces are allowed
   end
   
   def print_disclaimer
