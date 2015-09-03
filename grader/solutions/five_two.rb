@@ -6,7 +6,7 @@ class Grader::Solution::FiveTwo < Grader::Solution::Base
   
   private
   
-  def  verify_b_1p23456_123456
+  def verify_b_1p23456_123456
     input = <<-END_OF_INPUT
 b 1.23456 123456
     END_OF_INPUT
