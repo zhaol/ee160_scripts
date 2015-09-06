@@ -82,7 +82,7 @@ class Grader < Thor
   private
   
   def get_student_folders
-    Dir.glob('*').select {|f| File.directory? f}
+    Dir.glob('*').select {|f| File.directory? f}.sort
   end
   
   def get_username_from(folder_name)
