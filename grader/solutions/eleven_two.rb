@@ -2,6 +2,7 @@ class Grader::Solution::ElevenTwo < Grader::Solution::Base
   def analyze_output
     verify_quotient
     verify_remainder
+    verify_nonzero_remainder
   end
   
   private
@@ -17,7 +18,7 @@ class Grader::Solution::ElevenTwo < Grader::Solution::Base
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by(-25)
+      report.update_score_by(-15)
     end
   end
   
@@ -32,7 +33,22 @@ class Grader::Solution::ElevenTwo < Grader::Solution::Base
       # great
     else
       report_standard_error_message(input, output)
-      report.update_score_by(-25)
+      report.update_score_by(-15)
+    end
+  end
+  
+  def verify_nonzero_remainder
+    input = <<-END_OF_INPUT
+94
+8
+    END_OF_INPUT
+    run(input)
+    
+    if /^The remainder is: 6$/.match output
+      # great
+    else
+      report_standard_error_message(input, output)
+      report.update_score_by(-15)
     end
   end
 end
