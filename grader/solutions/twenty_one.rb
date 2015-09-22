@@ -24,10 +24,10 @@ y
     END_OF_INPUT
     run(input)
     if /List[\s]of[\s]Account[\s]Balances[\s=]*
-        [\s]*0:[\s]*[$][\s]*1[.]00 
-        [\s]*1:[\s]*[$][\s]*150[.]00 
-        [\s]*2:[\s]*[$][\s]*200[.]00 
-        [\s]*3:[\s]*[$][\s]*500[.]00/x.match output 
+        [\s]*1:[\s]*[$][\s]*1[.]00 
+        [\s]*2:[\s]*[$][\s]*150[.]00 
+        [\s]*3:[\s]*[$][\s]*200[.]00 
+        [\s]*4:[\s]*[$][\s]*500[.]00/x.match output 
       # great
     else
       report_standard_error_message(input, output)
