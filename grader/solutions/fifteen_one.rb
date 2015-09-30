@@ -26,7 +26,7 @@ class Grader::Solution::FifteenOne < Grader::Solution::Base
   end
 
   def verify_prototype
-    if /^int add[\s]?[(]int number1,[\s]*int number2[)];$/.match program_code
+    if /^int add[\s]?[(]int number1,[\s]*int number2[)];$/.match program_code # TODO allow any local variable names
       # great
     else
       report.write 'Could not find the function prototype'
@@ -35,7 +35,7 @@ class Grader::Solution::FifteenOne < Grader::Solution::Base
   end
   
   def verify_function
-    if /^int add[\s]?[(]int number1,[\s]?int number2[)][\s]?{$/.match program_code
+    if /^int add[\s]?[(]int number1,[\s]?int number2[)][\s]?{$/.match program_code # TODO allow any local variable names
       # great
     else
       report.write 'Could not find the function definition'
