@@ -10,9 +10,9 @@ class Grader::Solution::ThirtyoneTwo < Grader::Solution::Base
     run
     
     boldened_image = <<-END_OF_INPUT
-XXXOOOOOOOOOOOO
-XXXXXOOOOOXXXOO
-XXXXXOOOOOXXXOO
+OOOOOOOOOOOOOOO
+OOXXXOOOOOXXXOO
+OOXXXOOOOOXXXOO
 OOXXXOOOOOXXXOO
 OOOOOOXXXOOOOOO
 OOOOOOXXXOOOOOO
@@ -30,7 +30,7 @@ puts output
       report.write "The program successfully boldened the image"
     else
       report.write "The outputed images was not boldened"
-      report.update_score_by9-50
+      report.update_score_by(-50)
     end
   end
   
